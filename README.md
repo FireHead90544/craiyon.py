@@ -72,6 +72,9 @@ for i in images:
 ```
 ![image](https://user-images.githubusercontent.com/55452780/181877028-740bee12-432d-4019-b74e-a17f53b79987.png)
 
+## Todo
+
+- Build an async wrapper which is non-blocking and can be used with async code (e.g. aiohttp, discord.py)
 
 ## Contributing
 
