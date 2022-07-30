@@ -1,7 +1,7 @@
 
 # craiyon.py
 
-API Wrapper for [craiyon](craiyon.com) (formerly DAL-E-MINI) to generate awesome images from text tokens.
+API Wrapper for [craiyon](https://craiyon.com) (formerly DAL-E-MINI) to generate awesome images from text tokens.
 
 ## Badges
 
