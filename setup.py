@@ -18,4 +18,4 @@ setup(name='craiyon.py',
       license='Apache License 2.0',
       packages=['craiyon'],
       zip_safe=False,
-      install_requires=["aiohttp", "aiofiles"])
+      install_requires=["requests", "aiohttp", "aiofiles"])
