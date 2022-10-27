@@ -22,7 +22,6 @@ class GeneratedImages:
         '''
         Saves the generated images to the given path.
         Defaults to cwd/generated.
-        Async version not yet complete; Still has some blocking code.
         '''
         path = (AsyncPath.cwd() / 'generated') if not path else AsyncPath(path)
         await path.mkdir(parents=True, exist_ok=True)
