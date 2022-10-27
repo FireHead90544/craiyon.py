@@ -1,5 +1,5 @@
 from __future__ import annotations
-import asyncio
+import aiohttp
 from craiyon.templates import GeneratedImages
 import aiofiles
 
