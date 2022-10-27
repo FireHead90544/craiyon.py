@@ -74,7 +74,7 @@ for i in images:
 
 ## Todo
 
-- Build an async wrapper which is non-blocking and can be used with async code (e.g. aiohttp, discord.py)
+None!
 
 ## Contributing
 
