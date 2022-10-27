@@ -88,7 +88,7 @@ async def main():
     result = await generator.async_generate("Photorealistic image of shrek eating earth")
     await result.async_save_images() # Saves the generated images to 'current working directory/generated', you can also provide a custom path
     
-asyncio.run(main)
+asyncio.run(main())
 ```
 
 
