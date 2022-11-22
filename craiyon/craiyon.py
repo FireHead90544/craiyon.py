@@ -22,4 +22,6 @@ class Craiyon:
         url = self.BASE_URL + "/generate"
         async with aiohttp.ClientSession() as sess:
             async with sess.post(url, json={"prompt": tokens}) as resp:
-                return GeneratedImages(await resp.json())
+                resp = await resp.json()
+                images = resp['images']
+                return GeneratedImages(images)
