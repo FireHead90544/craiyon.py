@@ -28,6 +28,10 @@ Provided By: [shields.io](https://shields.io/)
 
 - [@Rudransh Joshi](https://www.github.com/FireHead90544)
 
+## Contributors
+
+- [@mdm9300404](https://github.com/mdm9300404)
+
   
 ## Installation
 
@@ -72,9 +76,29 @@ for i in images:
 ```
 ![image](https://user-images.githubusercontent.com/55452780/181877028-740bee12-432d-4019-b74e-a17f53b79987.png)
 
+## Async Usage / Examples
+
+###
+
+**Generate and save the images**
+
+```py
+from craiyon import Craiyon
+import asyncio
+
+
+async def main():
+    generator = Craiyon() # Instantiates the api wrapper
+    result = await generator.async_generate("Photorealistic image of shrek eating earth")
+    await result.async_save_images() # Saves the generated images to 'current working directory/generated', you can also provide a custom path
+    
+asyncio.run(main())
+```
+
+
 ## Todo
 
-- Build an async wrapper which is non-blocking and can be used with async code (e.g. aiohttp, discord.py)
+None!
 
 ## Contributing
 
