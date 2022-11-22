@@ -14,7 +14,7 @@ class GeneratedImages:
         '''
         path = (Path.cwd() / 'generated') if not path else Path(path)
         path.mkdir(parents=True, exist_ok=True)
-        for i in enumerate(self.images['images']):
+        for i in enumerate(self.images):
             with open(path / f'image-{i[0]+1}.jpg', 'wb') as f:
                 f.write(base64.decodebytes(i[1].encode('utf-8')))
     
@@ -25,6 +25,6 @@ class GeneratedImages:
         '''
         path = (AsyncPath.cwd() / 'generated') if not path else AsyncPath(path)
         await path.mkdir(parents=True, exist_ok=True)
-        for i in enumerate(self.images['images']):
+        for i in enumerate(self.images):
             async with aiofiles.open(path / f'image-{i[0]+1}.jpg', 'wb') as f:
                 await f.write(base64.decodebytes(i[1].encode('utf-8')))
