@@ -95,6 +95,27 @@ async def main():
 asyncio.run(main())
 ```
 
+**Use with a discord bot**
+
+```py
+import discord
+from craiyon import Craiyon
+from io import BytesIO
+
+# Assuming the 'bot' object is already created.
+@bot.command()
+async def generate(ctx, *, tokens):
+    generator = Craiyon() # Instantiates the api wrapper
+    result = await generator.async_generate(tokens)
+    images = result.images
+    for indx, i in images:
+       byt = BytesIO()
+       image = Image.open(BytesIO(base64.decodebytes(i.encode("utf-8"))))
+       image.save(byt, 'PNG')
+       byt.seek(0)
+       await ctx.send(file=discord.File(fp=byt, filename=f"Image_{indx+1}.png"))
+```
+
 
 ## Todo
 
