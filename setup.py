@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     readme = fh.read()
 
 setup(name='craiyon.py',
-      version='0.2.0',
+      version='0.3.0',
       description='API Wrapper for craiyon.com (DAL-E-MINI). Generate awesome images from text tokens.',
       long_description=readme,
       long_description_content_type="text/markdown",
