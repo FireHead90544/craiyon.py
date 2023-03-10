@@ -51,18 +51,6 @@ Or just manually clone the repository and build the wheel
 **Generate and save the images**
 
 ```py
-
-from craiyon import Craiyon
-
-generator = Craiyon()
-
-## Usage / Examples
-
-### 
-
-**Generate and save the images**
-
-```py
 from craiyon import Craiyon
 
 generator = Craiyon() # Instantiates the api wrapper
