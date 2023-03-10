@@ -1,4 +1,4 @@
-from craiyon.craiyon import Craiyon
+from craiyon.craiyon import Craiyon, CraiyonV1
 
 __author__ = "FireHead90544"
-__version__ = "0.2.0"
+__version__ = "0.3.0"
