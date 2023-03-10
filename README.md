@@ -164,7 +164,7 @@ Information about each argument:
 
 ### api_token
 * If you bought a paid subscription to Craiyon.com, you would know that the watermark is removed. If you wish to have the watermark removed from the generated images in your application as well, you can specify a token here. 
-* To find your token: Open Google Chrome, go to craiyon.com (make sure you're logged in), Press F12, go to the Network tab, make sure the record button is looks like a red circle at the top-left, and start generating a prompt. Two "draw" items should appear on the left, under "name". One of them will have a "Payload" tab next to "Headers" and "Preview", as well as above "General". Click it, and your token is listed there.
+* To find your token: Open Google Chrome, go to craiyon.com (make sure you're logged in), Press F12, go to the Network tab, make sure the record button looks like a red circle at the top-left. Put your prompt in the text box and press the orange "Draw" button. Two "draw" items should appear on the left, under "name". One of them will have a "Payload" tab next to "Headers" and "Preview", as well as above "General". Click it, and your token is listed there.
 
 ### model_version
 * Since Craiyon is still training their V2 model, it is improving every day. We recommend putting your own model version here to get the newest and best model they have at the moment.
