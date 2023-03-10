@@ -76,7 +76,7 @@ for i in images:
 ```
 ![image](https://user-images.githubusercontent.com/55452780/181877028-740bee12-432d-4019-b74e-a17f53b79987.png)
 
-## Just get the Direct Image URLs
+**Just get the Direct Image URLs**
 ```py
 from craiyon import Craiyon
 
