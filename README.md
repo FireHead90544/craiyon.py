@@ -44,7 +44,11 @@ The easiest way to install craiyon.py is using pip
 Or just manually clone the repository and build the wheel
 
 
-## Specify custom tokens/model versions
+## Usage / Examples
+
+### 
+
+**Generate and save the images**
 
 ```py
 
