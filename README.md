@@ -141,7 +141,7 @@ async def genimage(ctx, *, prompt: str):
     for index, image in enumerate(b64_list): # Loop through b64_list, keeping track of the index
         img_bytes = BytesIO(base64.b64decode(image)) # Decode the image and store it as a bytes object
         image = discord.File(img_bytes)
-        image.filename = f"result{index}.jpg"
+        image.filename = f"result{index}.webp"
         images1.append(image) # Add the image to the images1 list
         
     await ctx.reply(files=images1) # Reply to the user with all 9 images in 1 message
