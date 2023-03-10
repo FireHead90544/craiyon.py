@@ -95,25 +95,45 @@ async def main():
 asyncio.run(main())
 ```
 
-**Use with a discord bot**
 
+
+**Use with a Discord bot**
 ```py
+from craiyon import Craiyon, craiyon_utils
 import discord
-from craiyon import Craiyon
+from discord.ext import commands
 from io import BytesIO
+import base64
 
-# Assuming the 'bot' object is already created.
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(intents = intents, command_prefix="!")
+
+generator = Craiyon() # Initialize Craiyon() class
+
+@bot.event
+async def on_ready():
+    print(f"Successfully logged in as {bot.user.name}!")
+
+# Create command
 @bot.command()
-async def generate(ctx, *, tokens):
-    generator = Craiyon() # Instantiates the api wrapper
-    result = await generator.async_generate(tokens)
-    images = result.images
-    for indx, i in images:
-       byt = BytesIO()
-       image = Image.open(BytesIO(base64.decodebytes(i.encode("utf-8"))))
-       image.save(byt, 'PNG')
-       byt.seek(0)
-       await ctx.send(file=discord.File(fp=byt, filename=f"Image_{indx+1}.png"))
+async def genimage(ctx, *, prompt: str):
+    await ctx.send(f"Generating prompt \"{prompt}\"...")
+    
+    generated_images = await generator.async_generate(prompt) # Generate images
+    b64_list = await craiyon_utils.async_encode_base64(generated_images.images) # Download images from https://img.craiyon.com and store them as b64 bytestring object
+    
+    images1 = []
+    for index, image in enumerate(b64_list): # Loop through b64_list, keeping track of the index
+        img_bytes = BytesIO(base64.b64decode(image)) # Decode the image and store it as a bytes object
+        image = discord.File(img_bytes)
+        image.filename = f"result{index}.jpg"
+        images1.append(image) # Add the image to the images1 list
+        
+    await ctx.reply(files=images1) # Reply to the user with all 9 images in 1 message
+        
+
+bot.run("your_token_here")
 ```
 
 
