@@ -27,11 +27,7 @@ Provided By: [shields.io](https://shields.io/)
 ## Authors
 
 - [@Rudransh Joshi](https://www.github.com/FireHead90544)
-
-## Contributors
-
 - [@mdm9300404](https://github.com/mdm9300404)
-
   
 ## Installation
 
@@ -42,6 +38,16 @@ The easiest way to install craiyon.py is using pip
 ```
 
 Or just manually clone the repository and build the wheel
+
+## Craiyon v2 vs v1
+
+The api wrapper has separate classes revolving around each model, i.e, the Craiyon v1 and v2.
+A quick comparison between the two is given below:
+
+| Model | Speed | Quality | API_URL | Import Name |
+|:-----:|:-----:|:-------:|:-------:|:-----------:|
+| v2 | Faster (<1m) | Good | https://api.craiyon.com/draw | Craiyon |
+| v1 | Slower (~1.5m) | Average | https://backend.craiyon.com/generate | CraiyonV1 |
 
 
 ## Usage / Examples
@@ -72,6 +78,10 @@ result = generator.generate("Professional photo of Obama flashing a flag with hi
 images = craiyon_utils.encode_base64(result.images)
 for i in images:
     image = Image.open(BytesIO(base64.decodebytes(i)))
+    # To convert the .webp images to .jpg or .png, you can proceed like this
+    # image.convert("RGB").save("image.jpg", "JPEG") # For ".jpg" images
+    # image.convert("RGBA").save("image.png", "PNG") # For ".png" images
+    
     # Use the PIL's Image object as per your needs
 ```
 ![image](https://user-images.githubusercontent.com/55452780/181877028-740bee12-432d-4019-b74e-a17f53b79987.png)
@@ -154,15 +164,13 @@ bot.run("your_token_here")
 
 ```py
 
-from craiyon import Craiyon
+from craiyon import Craiyon # Importing the v2 model
 
-generator = Craiyon()
+# api_token and model_version are not required, but recommended
+generator = Craiyon(api_token="your-token-here", model_version="api-model-version")
 
-result = generator.generate("Teddy bear riding a skateboard", api_token="token-here", model_version="35s5hfwn9n78gb06") # api_token and model_version are not required, but recommended
-
+# ...rest is the same stuff as above
 ```
-
-Information about each argument:
 
 ### api_token
 * If you bought a paid subscription to Craiyon.com, you would know that the watermark is removed. If you wish to have the watermark removed from the generated images in your application as well, you can specify a token here. 

@@ -7,10 +7,9 @@ from craiyon.craiyon_utils import encode_base64, async_encode_base64
 
 # Handles V2 version of Craiyon API
 class GeneratedImagesV2:
-    def __init__(self, imagelist: list):
-        self.images = imagelist
+    def __init__(self, images: list):
+        self.images = images
             
-    
     # Save Images  
     def save_images(self, path: str=None):
         '''
@@ -52,7 +51,7 @@ class GeneratedImagesV2:
 
 # Handles V1 version of Craiyon API
 class GeneratedImagesV1:
-    def __init__(self, images: dict):
+    def __init__(self, images: list):
         self.images = images
         
     def save_images(self, path: str=None):
