@@ -178,7 +178,7 @@ generator = Craiyon(api_token="your-token-here", model_version="api-model-versio
 
 ### model_version
 * Since Craiyon is still training their V2 model, it is improving every day. We recommend putting your own model version here to get the newest and best model they have at the moment.
-* To get the model version, follow the steps for the api_token listed above, except copy the "version" instead of the "token". Then, just pass it in as an argument for the generate() function as a string and you're ready!
+* To get the model version, follow the steps for the api_token listed above, except copy the "version" instead of the "token". Then, just pass it in as an argument while instantiating the `Craiyon` class and you're ready!
 * While this is recommended, it is not required. If you do not pass a custom model version, this value will automatically default to "35s5hfwn9n78gb06", which is Craiyon's newest model as of March 10, 2023.
 
 ## Backwards Compatibility
