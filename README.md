@@ -208,7 +208,9 @@ If you were previously using this library before we added support for Craiyon's 
 
 ## Todo
 
-None!
+- Implement: Upscale
+- Fix: v3 Breaking (Urgent)
+Please wait for around 3-4 days before the updates can be pushed for these.
 
 ## Contributing
 
