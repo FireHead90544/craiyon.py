@@ -1,6 +1,6 @@
 from __future__ import annotations
 import aiohttp
-import requests
+from cloudscraper import CloudScraper
 from craiyon.templates import GeneratedImages
 
 
@@ -15,10 +15,10 @@ class Craiyon:
         - (Not required) | api_token: Useful if you're paying for a subscription on Craiyon's website and want to remove the watermark from the generated images
         
         - (Not required) | model_version: Since Craiyon is constantly updating their v3 model seemingly everyday, you can specify a newer model here.
-        Defaults to \"35s5hfwn9n78gb06\" (March 10th Model) if nothing is specified here
+        Defaults to \"c4ue22fb7kb6wlac\" (August 21st, 2023 Model) if nothing is specified here
     '''
     
-    def __init__(self, api_token=None, model_version="35s5hfwn9n78gb06") -> None:
+    def __init__(self, api_token=None, model_version="c4ue22fb7kb6wlac") -> None:
         self.BASE_URL = "https://api.craiyon.com"
         self.DRAW_API_ENDPOINT = "/v3"
         self.model_version = model_version
@@ -43,7 +43,7 @@ class Craiyon:
         """
 
         url = self.BASE_URL + self.DRAW_API_ENDPOINT
-        session = requests.Session()
+        session = CloudScraper()
         resp = session.post(url, json={'prompt': prompt, "negative_prompt": negative_prompt, "model": model_type, "token": self.api_token, "version": self.model_version})
         resp = resp.json()
 
@@ -93,11 +93,11 @@ class Craiyon:
 #         - (Not required) | api_token: Useful if you're paying for a subscription on Craiyon's website and want to remove the watermark from the generated images
 #        
 #         - (Not required) | model_version: Since Craiyon is constantly updating their v2 model seemingly everyday, you can specify a newer model here.
-#         Defaults to \"35s5hfwn9n78gb06\" (March 10th Model) if nothing is specified here
+#         Defaults to \"c4ue22fb7kb6wlac\" (August 21st, 2023 Model) if nothing is specified here
 #        
 #     '''
 #
-#     def __init__(self, api_token=None, model_version="35s5hfwn9n78gb06") -> None:
+#     def __init__(self, api_token=None, model_version="c4ue22fb7kb6wlac") -> None:
 #         self.BASE_URL = "https://api.craiyon.com"
 #         self.DRAW_API_ENDPOINT = "/draw"
 #         self.model_version = model_version
@@ -116,7 +116,7 @@ class Craiyon:
 #         """
 #            
 #         url = self.BASE_URL + self.DRAW_API_ENDPOINT
-#         session = requests.Session()
+#         session = CloudScraper()
 #         resp = session.post(url, json={'prompt': prompt, "token": self.api_token, "version": self.model_version})
 #        
 #         resp = resp.json()
@@ -176,7 +176,7 @@ class CraiyonV1:
         - Returns a list of 9 Base64 bytestrings (.jpg)
         """
         
-        session = requests.Session()
+        session = CloudScraper()
         url = self.BASE_URL + self.DRAW_API_ENDPOINT
         resp = session.post(url, json={'prompt': prompt})
         return GeneratedImages(resp.json()['images'], model="v1")

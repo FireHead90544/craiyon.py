@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     readme = fh.read()
 
 setup(name='craiyon.py',
-      version='1.0.0',
+      version='1.1.0',
       description='API Wrapper for craiyon.com (DAL-E-MINI). Generate awesome images from text tokens.',
       long_description=readme,
       long_description_content_type="text/markdown",
@@ -18,4 +18,4 @@ setup(name='craiyon.py',
       license='Apache License 2.0',
       packages=['craiyon'],
       zip_safe=False,
-      install_requires=["requests", "aiohttp", "aiofiles", "aiopath"])
+      install_requires=["requests", "cloudscraper", "aiohttp", "aiofiles", "aiopath"])

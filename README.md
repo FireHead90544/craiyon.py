@@ -208,9 +208,14 @@ If you were previously using this library before we added support for Craiyon's 
 
 ## Todo
 
-- Implement: Upscale
-- Fix: v3 Breaking (Urgent)
-Please wait for around 3-4 days before the updates can be pushed for these.
+Implement: Upscale (https://api.craiyon.com/upscale)
+
+Payload Format:
+
+```json
+{"image_id": "date/imagepath.ext", "model": "none", "negative_prompt": "", "prompt": "", "token": "null", "version": "c4ue22fb7kb6wlac"}
+```
+Upscaled: `"https://pics.craiyon.com/" + resp.json()["images"][0]`
 
 ## Contributing
 
