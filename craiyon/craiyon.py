@@ -168,6 +168,12 @@ class CraiyonV1:
     def __init__(self) -> None:
         self.BASE_URL = "https://backend.craiyon.com"
         self.DRAW_API_ENDPOINT = "/generate"
+        self._headers = {
+            "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 Edg/120.0.0.0",
+            "Origin": "https://www.craiyon.com",
+            "Accept": "*/*",
+            "Authority": "api.craiyon.com"
+        }
     
     def generate(self, prompt: str) -> GeneratedImages:
         
@@ -181,9 +187,10 @@ class CraiyonV1:
         - Returns a list of 9 Base64 bytestrings (.jpg)
         """
         
-        session = CloudScraper()
+        # session = CloudScraper()
         url = self.BASE_URL + self.DRAW_API_ENDPOINT
-        resp = session.post(url, json={'prompt': prompt})
+        # resp = session.post(url, json={'prompt': prompt})
+        resp = requests.post(url, json={'prompt': prompt}, headers=self._headers)
         return GeneratedImages(resp.json()['images'], model="v1")
 
     async def async_generate(self, prompt: str) -> GeneratedImages:
@@ -199,7 +206,7 @@ class CraiyonV1:
         """
         
         url = self.BASE_URL + self.DRAW_API_ENDPOINT
-        async with aiohttp.ClientSession() as sess:
+        async with aiohttp.ClientSession(headers=self._headers) as sess:
             async with sess.post(url, json={"prompt": prompt}) as resp:
                 resp = await resp.json()
                 return GeneratedImages(resp['images'], model="v1")
