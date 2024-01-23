@@ -1,8 +1,8 @@
 from __future__ import annotations
 import aiohttp
-from cloudscraper import CloudScraper
+import requests
 from craiyon.templates import GeneratedImages
-
+# from cloudscraper import CloudScraper # FIXME: Use aiocfscrape for async (if required)
 
 # v3 version of Craiyon API
 class Craiyon:
@@ -23,6 +23,10 @@ class Craiyon:
         self.DRAW_API_ENDPOINT = "/v3"
         self.model_version = model_version
         self.api_token = api_token
+        self._headers = {
+            "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 Edg/120.0.0.0",
+            "Origin": "https://www.craiyon.com"
+        }
 
     # Generate images with v3
     def generate(self, prompt: str, negative_prompt: str = "", model_type: str = "none") -> GeneratedImages:
@@ -43,8 +47,9 @@ class Craiyon:
         """
 
         url = self.BASE_URL + self.DRAW_API_ENDPOINT
-        session = CloudScraper()
-        resp = session.post(url, json={'prompt': prompt, "negative_prompt": negative_prompt, "model": model_type, "token": self.api_token, "version": self.model_version})
+        # session = CloudScraper()
+        # resp = session.port(url, json={'prompt': prompt, "negative_prompt": negative_prompt, "model": model_type, "token": self.api_token, "version": self.model_version})
+        resp = requests.post(url, json={'prompt': prompt, "negative_prompt": negative_prompt, "model": model_type, "token": self.api_token, "version": self.model_version}, headers=self._headers)
         resp = resp.json()
 
         # Add protocol, domain and subdomain (https://img.craiyon.com) to each item as those aren't included in the response by default
@@ -71,7 +76,7 @@ class Craiyon:
         """
 
         url = self.BASE_URL + self.DRAW_API_ENDPOINT
-        async with aiohttp.ClientSession() as sess:
+        async with aiohttp.ClientSession(headers=self._headers) as sess:
             async with sess.post(url, json={'prompt': prompt, "negative_prompt": negative_prompt, "model": model_type, "token": self.api_token, "version": self.model_version}) as resp:
                 resp = await resp.json()
                 # Add protocol, domain and subdomain (https://img.craiyon.com) to each item as those aren't included in the response by default
